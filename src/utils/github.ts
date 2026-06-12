@@ -76,9 +76,22 @@ export async function fetchGitHubReleases(): Promise<GitHubRelease[]> {
       throw new Error(`GitHub API returned status ${res.status}`);
     }
 
-    const data = await res.json();
+    let data = await res.json();
     if (!Array.isArray(data) || data.length === 0) {
-      throw new Error('No releases found in GitHub response');
+      console.warn('Releases list was empty, trying to fetch latest release directly...');
+      const latestRes = await fetch('https://api.github.com/repos/Lynxvirtuoso/gigpad-release/releases/latest', {
+        headers: {
+          'Accept': 'application/vnd.github.v3+json',
+          'User-Agent': 'GigPad-Hub-Website'
+        },
+        next: { revalidate: 300 }
+      });
+      if (latestRes.ok) {
+        const latestData = await latestRes.json();
+        data = [latestData];
+      } else {
+        throw new Error('No releases found in GitHub response');
+      }
     }
 
     return data
@@ -86,7 +99,7 @@ export async function fetchGitHubReleases(): Promise<GitHubRelease[]> {
       .map((rel: any) => {
         // Search for an APK asset
         const apkAsset = rel.assets?.find((asset: any) => asset.name.endsWith('.apk'));
-        const sizeMb = apkAsset ? `${(apkAsset.size / (1024 * 1024)).toFixed(1)} MB` : GIGPAD_CONFIG.release.fileSize;
+        const sizeMb = apkAsset ? `${(apkAsset.size / (1024 * 1024)).toFixed(1)} MB` : 'N/A';
         const downloadUrl = apkAsset?.browser_download_url || `https://github.com/Lynxvirtuoso/gigpad-release/releases/download/${rel.tag_name}/gigpad-${rel.tag_name}.apk`;
         const body = rel.body || '';
 
@@ -106,30 +119,12 @@ export async function fetchGitHubReleases(): Promise<GitHubRelease[]> {
         };
       });
   } catch (error) {
-    console.warn('Error fetching releases from GitHub (using local config fallback):', error);
-    // Return GIGPAD_CONFIG as fallback
-    return GIGPAD_CONFIG.changelog.map((entry) => {
-      const mockMarkdown = `### New Features\n${entry.features.map(f => `- ${f}`).join('\n')}\n\n### Improvements\n${entry.improvements.map(i => `- ${i}`).join('\n')}\n\n### Bug Fixes\n${entry.bugFixes.map(b => `- ${b}`).join('\n')}`;
-      return {
-        version: entry.version,
-        releaseDate: entry.releaseDate,
-        apkUrl: `https://github.com/Lynxvirtuoso/gigpad-release/releases/download/${entry.version}/gigpad-${entry.version}.apk`,
-        releaseNotes: mockMarkdown,
-        parsedNotes: {
-          features: entry.features,
-          improvements: entry.improvements,
-          bugFixes: entry.bugFixes,
-          rawBody: mockMarkdown
-        },
-        size: GIGPAD_CONFIG.release.fileSize,
-        prerelease: false,
-        draft: false
-      };
-    });
+    console.warn('Error fetching releases from GitHub:', error);
+    return [];
   }
 }
 
-export async function fetchLatestRelease(): Promise<GitHubRelease> {
+export async function fetchLatestRelease(): Promise<GitHubRelease | null> {
   const releases = await fetchGitHubReleases();
-  return releases[0];
+  return releases.length > 0 ? releases[0] : null;
 }

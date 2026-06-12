@@ -54,19 +54,14 @@ export const GIGPAD_CONFIG = {
   description: 'GigPad is a free, modern Android application for musicians, worship teams, bands, and performers to seamlessly manage songs, transpose chords, detect keys, and build custom setlists for live performances.',
   
   release: {
-    version: 'v1.4.2',
-    releaseDate: 'June 08, 2026',
-    fileSize: '16.4 MB',
-    downloadUrl: '#', // Config placeholder
+    version: 'N/A',
+    releaseDate: 'N/A',
+    fileSize: 'N/A',
+    downloadUrl: '#',
     checksum: 'sha256-4c28f118a8f56ef4827d09b626d7f02d08de32810a9042b947c94df6d8e2026b'
   } as ReleaseInfo,
 
-  stats: [
-    { label: 'Total Downloads', value: '4.8k+', description: 'Total installs from all release channels' },
-    { label: 'Current Release', value: 'v1.4.2', description: 'Active version released June 2026' },
-    { label: 'Community Feedback', value: '180+', description: 'Submissions and feature requests' },
-    { label: 'Offline Compatibility', value: '100%', description: 'No internet connection required' }
-  ] as StatItem[],
+  stats: [] as StatItem[],
 
   features: [
     {
@@ -131,55 +126,7 @@ export const GIGPAD_CONFIG = {
     }
   ] as Feature[],
 
-  changelog: [
-    {
-      version: 'v1.4.2',
-      releaseDate: 'June 08, 2026',
-      isLatest: true,
-      features: [
-        'Added chord transposition support using a slider control',
-        'Implemented auto-scroll with adjustable speed presets'
-      ],
-      improvements: [
-        'Enhanced chord recognition accuracy for complex jazz extensions (e.g., Cmaj7, Am9)',
-        'Updated UI layout for tablet devices to support split screen side-by-side mode'
-      ],
-      bugFixes: [
-        'Fixed issue where screen would turn off while in performance mode',
-        'Resolved crash when importing corrupted ChordPro files'
-      ]
-    },
-    {
-      version: 'v1.3.0',
-      releaseDate: 'April 20, 2026',
-      features: [
-        'Introduced Setlists Manager to group songs for specific events',
-        'Added PDF and Text file import helper tools'
-      ],
-      improvements: [
-        'Reduced app bundle size by optimizing local database structures',
-        'Improved fast search indexing performance'
-      ],
-      bugFixes: [
-        'Fixed chord wrapping issues on smaller screens',
-        'Corrected text encoding bugs when exporting lyrics'
-      ]
-    },
-    {
-      version: 'v1.2.0',
-      releaseDate: 'February 15, 2026',
-      features: [
-        'Created custom Song Editor with syntax highlighting for chords',
-        'Added basic dark mode styling toggle'
-      ],
-      improvements: [
-        'Redesigned song view page with custom font sizing controls'
-      ],
-      bugFixes: [
-        'Fixed cursor jumping bug in editor screen'
-      ]
-    }
-  ] as ChangelogEntry[],
+  changelog: [] as ChangelogEntry[],
 
   roadmap: [
     {

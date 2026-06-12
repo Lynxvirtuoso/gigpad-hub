@@ -12,33 +12,33 @@ import {
 export default async function DashboardOverview() {
   const latestRelease = await fetchLatestRelease();
 
-  // Mock telemetry metrics
+  // Real-time telemetry metrics
   const stats = [
     {
       name: 'Total Downloads',
-      value: GIGPAD_CONFIG.stats.find(s => s.label.includes('Downloads'))?.value || '4.8k+',
-      change: '+12% this week',
+      value: 'N/A',
+      change: 'No download data exists yet',
       icon: Download,
       color: 'text-blue-500 bg-blue-500/10 border-blue-500/20',
     },
     {
       name: 'Latest App Version',
-      value: latestRelease.version || GIGPAD_CONFIG.release.version,
-      change: `Released ${latestRelease.releaseDate || GIGPAD_CONFIG.release.releaseDate}`,
+      value: latestRelease ? latestRelease.version : 'N/A',
+      change: latestRelease ? `Released ${latestRelease.releaseDate}` : 'No releases found',
       icon: Tag,
       color: 'text-violet-500 bg-violet-500/10 border-violet-500/20',
     },
     {
       name: 'Feedback Received',
-      value: '182',
-      change: '+14 new today',
+      value: 'N/A',
+      change: 'No feedback submissions yet',
       icon: MessageSquare,
       color: 'text-emerald-500 bg-emerald-500/10 border-emerald-500/20',
     },
     {
       name: 'API Server Status',
-      value: 'Healthy',
-      change: '100% Uptime (30d)',
+      value: 'Online',
+      change: 'Server is active',
       icon: Activity,
       color: 'text-cyan-500 bg-cyan-500/10 border-cyan-500/20',
     },
@@ -83,26 +83,12 @@ export default async function DashboardOverview() {
         })}
       </div>
 
-      {/* Recent Activity Mock Feed */}
+      {/* Recent Activity Feed */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 p-6 rounded-2xl bg-slate-900/30 border border-white/5 space-y-4">
           <h2 className="text-base font-bold text-white">System Logs</h2>
-          <div className="space-y-3 font-mono text-[10px] leading-relaxed text-slate-400">
-            <div className="flex gap-2.5 items-start p-2 rounded bg-slate-950/50">
-              <span className="text-slate-500">[2026-06-11 17:15:32]</span>
-              <span className="text-emerald-400">[INFO]</span>
-              <span>Successfully fetched latest releases from GitHub API.</span>
-            </div>
-            <div className="flex gap-2.5 items-start p-2 rounded bg-slate-950/50">
-              <span className="text-slate-500">[2026-06-11 16:48:10]</span>
-              <span className="text-blue-400">[AUTH]</span>
-              <span>Admin session verification requested for user lynxvirtuoso@admin.com.</span>
-            </div>
-            <div className="flex gap-2.5 items-start p-2 rounded bg-slate-950/50">
-              <span className="text-slate-500">[2026-06-11 14:20:05]</span>
-              <span className="text-yellow-400">[WARN]</span>
-              <span>High rate of downloads recorded from client IP range 192.168.1.*.</span>
-            </div>
+          <div className="p-8 text-center rounded-xl bg-slate-950/50 border border-white/5 font-sans text-xs text-slate-500">
+            No system logs available
           </div>
         </div>
 

@@ -23,17 +23,17 @@ export default async function AdminDownloads() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="p-4 rounded-xl bg-slate-950/50 border border-white/5 space-y-1">
               <span className="text-[10px] text-slate-500 font-bold block">APK FILENAME</span>
-              <span className="text-xs font-bold text-white">gigpad-{latestRelease.version || GIGPAD_CONFIG.release.version}.apk</span>
+              <span className="text-xs font-bold text-white">{latestRelease ? `gigpad-${latestRelease.version}.apk` : 'N/A'}</span>
             </div>
 
             <div className="p-4 rounded-xl bg-slate-950/50 border border-white/5 space-y-1">
               <span className="text-[10px] text-slate-500 font-bold block">FILE SIZE</span>
-              <span className="text-xs font-bold text-white">{latestRelease.size || GIGPAD_CONFIG.release.fileSize}</span>
+              <span className="text-xs font-bold text-white">{latestRelease ? latestRelease.size : 'N/A'}</span>
             </div>
 
             <div className="p-4 rounded-xl bg-slate-950/50 border border-white/5 space-y-1 sm:col-span-2">
               <span className="text-[10px] text-slate-500 font-bold block">SHA256 CHECKSUM</span>
-              <span className="text-[10px] font-mono text-white truncate block">{GIGPAD_CONFIG.release.checksum}</span>
+              <span className="text-[10px] font-mono text-white truncate block">{latestRelease && latestRelease.checksum ? latestRelease.checksum : 'N/A (No active release verified)'}</span>
             </div>
           </div>
 

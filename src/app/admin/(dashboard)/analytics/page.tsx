@@ -19,54 +19,12 @@ export default function AdminAnalytics() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* Active Visitors card */}
-        <div className="p-6 rounded-2xl bg-slate-900/30 border border-white/5 space-y-4">
-          <div className="flex justify-between items-start">
-            <h3 className="text-xs font-bold text-white uppercase tracking-wider text-slate-400">Unique Visitors</h3>
-            <span className="p-2 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400">
-              <Users className="w-4 h-4" />
-            </span>
-          </div>
-          <div>
-            <p className="text-2xl font-extrabold text-white">2,840</p>
-            <p className="text-[10px] text-emerald-400 font-medium flex items-center gap-1 mt-1">
-              <TrendingUp className="w-3.5 h-3.5" /> +24% vs last month
-            </p>
-          </div>
-        </div>
-
-        {/* Page views */}
-        <div className="p-6 rounded-2xl bg-slate-900/30 border border-white/5 space-y-4">
-          <div className="flex justify-between items-start">
-            <h3 className="text-xs font-bold text-white uppercase tracking-wider text-slate-400">Page Views</h3>
-            <span className="p-2 rounded-xl bg-violet-500/10 border border-violet-500/20 text-violet-400">
-              <BarChart3 className="w-4 h-4" />
-            </span>
-          </div>
-          <div>
-            <p className="text-2xl font-extrabold text-white">12,480</p>
-            <p className="text-[10px] text-emerald-400 font-medium flex items-center gap-1 mt-1">
-              <TrendingUp className="w-3.5 h-3.5" /> +18% vs last month
-            </p>
-          </div>
-        </div>
-
-        {/* Regional Conversion */}
-        <div className="p-6 rounded-2xl bg-slate-900/30 border border-white/5 space-y-4">
-          <div className="flex justify-between items-start">
-            <h3 className="text-xs font-bold text-white uppercase tracking-wider text-slate-400">Conversion Rate</h3>
-            <span className="p-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
-              <Globe className="w-4 h-4" />
-            </span>
-          </div>
-          <div>
-            <p className="text-2xl font-extrabold text-white">38.4%</p>
-            <p className="text-[10px] text-emerald-400 font-medium flex items-center gap-1 mt-1">
-              <TrendingUp className="w-3.5 h-3.5" /> +2.1% conversion lift
-            </p>
-          </div>
-        </div>
+      <div className="p-12 text-center rounded-2xl bg-slate-900/10 border border-white/5 flex flex-col items-center justify-center space-y-3">
+        <BarChart3 className="w-8 h-8 text-slate-500 animate-pulse" />
+        <h3 className="text-sm font-bold text-white">No Analytics Data Available Yet</h3>
+        <p className="text-xs text-slate-400 max-w-sm leading-relaxed animate-pulse">
+          Analytics will appear once data is collected.
+        </p>
       </div>
     </div>
   );

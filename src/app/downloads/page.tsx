@@ -52,18 +52,25 @@ export default async function Downloads() {
               </div>
             </div>
 
-            {/* Simulated Action */}
+            {/* Action */}
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
-              <a
-                href={latestRelease?.apkUrl}
-                className="flex items-center justify-center gap-2.5 px-8 py-3.5 text-sm font-semibold rounded-xl bg-white text-gray-950 hover:bg-slate-100 transition-colors shadow-lg animate-pulse"
-              >
-                <Download className="w-4 h-4" />
-                Download APK File
-              </a>
+              {latestRelease ? (
+                <a
+                  href={latestRelease.apkUrl}
+                  className="flex items-center justify-center gap-2.5 px-8 py-3.5 text-sm font-semibold rounded-xl bg-white text-gray-950 hover:bg-slate-100 transition-colors shadow-lg animate-pulse font-sans"
+                >
+                  <Download className="w-4 h-4" />
+                  Download APK File
+                </a>
+              ) : (
+                <span className="flex items-center justify-center gap-2.5 px-8 py-3.5 text-sm font-semibold rounded-xl bg-slate-900 text-slate-500 border border-white/5 cursor-not-allowed font-sans">
+                  <Download className="w-4 h-4" />
+                  No APK Release Available
+                </span>
+              )}
               <Link
                 href="/changelog"
-                className="flex items-center justify-center gap-2 px-8 py-3.5 text-sm font-semibold rounded-xl bg-slate-900 text-slate-200 border border-white/10 hover:bg-slate-800 transition-all"
+                className="flex items-center justify-center gap-2 px-8 py-3.5 text-sm font-semibold rounded-xl bg-slate-900 text-slate-200 border border-white/10 hover:bg-slate-800 transition-all font-sans"
               >
                 <FileText className="w-4 h-4" />
                 View Release Notes

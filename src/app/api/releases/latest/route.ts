@@ -4,6 +4,12 @@ import { fetchLatestRelease } from '@/utils/github';
 export async function GET() {
   try {
     const latest = await fetchLatestRelease();
+    if (!latest) {
+      return NextResponse.json(
+        { error: 'No releases available yet.' },
+        { status: 404 }
+      );
+    }
     return NextResponse.json({
       version: latest.version,
       releaseDate: latest.releaseDate,
